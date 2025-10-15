@@ -1,0 +1,185 @@
+import { StyleSheet, Dimensions } from "react-native";
+import { colors } from "../../colors";
+
+const { width } = Dimensions.get('window');
+
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    paddingHorizontal: 16,
+    paddingTop: 20,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  pageTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: colors.primary,
+  },
+  cartButton: {
+    backgroundColor: colors.laranjaPrincipal,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+  },
+  cartBadge: {
+    position: "absolute",
+    top: -5,
+    right: -5,
+    backgroundColor: "#FF4444",
+    borderRadius: 10,
+    minWidth: 20,
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cartBadgeText: {
+    color: colors.white,
+    fontSize: 12,
+    fontWeight: "bold",
+  },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: colors.white,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    marginBottom: 20,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+  searchIcon: {
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
+    height: 50,
+    fontSize: 16,
+    color: colors.text,
+  },
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  productsList: {
+    paddingBottom: 20,
+  },
+  productCard: {
+    backgroundColor: colors.white,
+    borderRadius: 12,
+    marginBottom: 16,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    overflow: "hidden",
+  },
+  productImage: {
+    width: "100%",
+    height: 200,
+    resizeMode: "cover",
+  },
+  productInfo: {
+    padding: 16,
+  },
+  productName: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: colors.primary,
+    marginBottom: 8,
+  },
+  productDescription: {
+    fontSize: 14,
+    color: colors.cinza,
+    marginBottom: 12,
+    lineHeight: 20,
+  },
+  productMeta: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  ratingContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  ratingText: {
+    fontSize: 14,
+    color: colors.text,
+    marginLeft: 4,
+  },
+  stockText: {
+    fontSize: 12,
+    color: colors.cinza,
+  },
+  priceContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  productPrice: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: colors.laranjaPrincipal,
+  },
+  addButton: {
+    backgroundColor: colors.laranjaPrincipal,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
+  },
+  disabledButton: {
+    backgroundColor: colors.cinza,
+  },
+  addButtonText: {
+    color: colors.white,
+    fontWeight: "bold",
+    marginLeft: 6,
+  },
+  emptyMessage: {
+    textAlign: "center",
+    fontSize: 16,
+    color: colors.cinza,
+    marginTop: 50,
+  },
+  footerButton: {
+    backgroundColor: colors.laranjaPrincipal,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 20,
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  footerButtonText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  footerButtonPrice: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});

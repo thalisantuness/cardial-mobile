@@ -5,6 +5,8 @@ import HomeStack from "./HomeStack";
 import ChatStack from "./ChatStack";
 import ProfileStack from "./ProfileStack";
 import FretesStack from "./FretesStack";
+import CartStack from "./CartStack";
+import GiftStack from "./GiftStack";
 import SolicitacoesStack from "./Notification";
 import { colors } from "../colors";
 
@@ -44,9 +46,11 @@ function AppTabs() {
       })}
     >
       <Tab.Screen name="Loja" component={HomeStack} />
-      <Tab.Screen name="Agendamentos" component={FretesStack} />
+      <Tab.Screen name="Agendar" component={FretesStack} />
       <Tab.Screen name="Pedidos" component={SolicitacoesStack} />
-      <Tab.Screen name="Presentes" component={ChatStack} />
+      <Tab.Screen name="Presentes" component={GiftStack} />
+      <Tab.Screen name="Chat" component={ChatStack} />                                                                                                                                                
+      <Tab.Screen name="Carrinho" component={CartStack} />
       <Tab.Screen name="Perfil" component={ProfileStack} />
     </Tab.Navigator>
   );
