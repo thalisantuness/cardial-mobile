@@ -1,0 +1,390 @@
+// styles.js
+import { StyleSheet } from 'react-native';
+import { colors } from '../../colors';
+
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: colors.laranjaPrincipal,
+    height: 90,
+    paddingHorizontal: 15,
+    paddingTop: 40,
+  },
+  headerTitle: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  addButton: {
+    backgroundColor: colors.verde,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 15,
+    margin: 15,
+    borderRadius: 8,
+  },
+  addButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 10,
+  },
+  listContainer: {
+    paddingHorizontal: 15,
+    paddingBottom: 15,
+  },
+  freteItemContainer: {
+    backgroundColor: "white",
+    borderRadius: 8,
+    padding: 15,
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  freteHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  freteTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: colors.text,
+  },
+  freteValor: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: colors.verde,
+  },
+  routeContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  routeText: {
+    fontSize: 14,
+    color: colors.cinza,
+    marginLeft: 5,
+  },
+  detailsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderTopWidth: 1,
+    borderTopColor: colors.cinzaClaro,
+    paddingTop: 10,
+  },
+  detailText: {
+    fontSize: 14,
+    color: colors.cinza,
+  },
+  emptyListText: {
+    textAlign: "center",
+    marginTop: 50,
+    fontSize: 16,
+    color: colors.cinza,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalContent: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+    padding: 20,
+    width: "90%",
+    maxHeight: "80%",
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+    color: colors.text,
+  },
+  modalScrollView: {
+    maxHeight: 400,
+  },
+  modalButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 10,
+  },
+  modalButton: {
+    backgroundColor: colors.laranjaPrincipal,
+    padding: 15,
+    borderRadius: 8,
+    flex: 1,
+    alignItems: "center",
+    marginLeft: 5,
+  },
+  clearButton: {
+    backgroundColor: colors.cinza,
+    marginRight: 5,
+    marginLeft: 0,
+  },
+  modalButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  input: {
+    backgroundColor: "#F5F5F5",
+    borderRadius: 8,
+    padding: 15,
+    fontSize: 16,
+    marginBottom: 15,
+    justifyContent: "center",
+  },
+  inputDisabled: {
+    backgroundColor: "#E0E0E0",
+  },
+  pickerText: {
+    fontSize: 16,
+    color: colors.text,
+  },
+  textArea: {
+    backgroundColor: "#F5F5F5",
+    borderRadius: 8,
+    padding: 15,
+    fontSize: 16,
+    marginBottom: 15,
+    height: 100,
+    textAlignVertical: "top",
+  },
+  dateInput: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#F5F5F5",
+    borderRadius: 8,
+    padding: 15,
+    marginBottom: 15,
+  },
+  checkboxGroup: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginBottom: 15,
+  },
+  checkboxGroupTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+    color: colors.text,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.cinzaClaro,
+    paddingBottom: 5,
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "48%",
+    marginBottom: 10,
+  },
+  checkboxItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 15,
+    marginBottom: 10,
+  },
+  checkbox: {
+    width: 24,
+    height: 24,
+    borderWidth: 2,
+    borderColor: colors.laranjaPrincipal,
+    borderRadius: 4,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 8,
+  },
+  checkboxChecked: {
+    backgroundColor: colors.laranjaPrincipal,
+    borderColor: colors.laranjaPrincipal,
+  },
+  checkboxLabel: {
+    fontSize: 16,
+    color: colors.text,
+    flexShrink: 1,
+  },
+  checkboxGroupRow: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginBottom: 15,
+  },
+  // Estilos para o modal de localidades
+  localidadeModalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.6)",
+  },
+  localidadeModalOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  localidadeModalContent: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+    width: "80%",
+    maxHeight: "60%",
+    paddingVertical: 10,
+    elevation: 10,
+  },
+  localidadeModalHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 15,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.cinzaClaro,
+  },
+  localidadeModalButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingHorizontal: 15,
+    marginTop: 10,
+  },
+  flatList: {
+    flex: 1,
+  },
+  cancelButton: {
+    backgroundColor: colors.cinza,
+    padding: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    width: "100%",
+    minHeight: 45,
+  },
+  modalOption: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#E8ECF4",
+  },
+  modalOptionText: {
+    fontSize: 16,
+    color: "#000000",
+  },
+  // Estilo para a seção de filtros na listagem
+  filterSection: {
+    padding: 15,
+    backgroundColor: "white",
+    borderBottomWidth: 1,
+    borderBottomColor: colors.cinzaClaro,
+  },
+  filterHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 15,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: colors.text,
+  },
+  sectionSubtitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: colors.text,
+    marginBottom: 10,
+  },
+  moreFiltersButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 8,
+    backgroundColor: "#F5F5F5",
+    borderRadius: 8,
+  },
+  moreFiltersText: {
+    color: colors.laranjaPrincipal,
+    fontWeight: "bold",
+    marginRight: 5,
+  },
+  filterActions: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 10,
+  },
+  filterActionButton: {
+    flex: 1,
+    padding: 15,
+    borderRadius: 8,
+    alignItems: "center",
+    marginHorizontal: 5,
+  },
+  clearFilterButton: {
+    backgroundColor: colors.cinza,
+  },
+  clearFilterButtonText: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  applyButton: {
+    backgroundColor: colors.laranjaPrincipal,
+  },
+  applyButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  // Novo estilo para o botão de toggle dos filtros
+  toggleFilterButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.laranjaPrincipal,
+    padding: 10,
+    marginHorizontal: 15,
+    marginTop: 10,
+    borderRadius: 8,
+  },
+  toggleFilterButtonText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginRight: 5,
+  },
+  actionsContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginTop: 15,
+  },
+  actionButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 8,
+    marginLeft: 10,
+  },
+  chatButton: {
+    backgroundColor: colors.verde,
+  },
+  finalizarButton: {
+    backgroundColor: colors.verde,
+  },
+  cancelarButton: {
+    backgroundColor: colors.vermelho,
+  },
+  actionButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 12,
+  },
+  // Estilo para o ScrollView dos filtros
+  filterScrollView: {
+    maxHeight: 300, // Altura máxima para scroll
+  },
+});
