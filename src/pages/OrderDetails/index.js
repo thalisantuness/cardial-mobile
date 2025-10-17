@@ -1,4 +1,4 @@
-// src/pages/ProductDetails/index.js (CORRIGIDO)
+// src/pages/OrderDetails/index.js (CORRIGIDO)
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -16,8 +16,8 @@ import { useCart } from "../../context/CartContext";
 import styles from "./styles";
 import { colors } from "../../colors";
 
-const ProductDetailsScreen = ({ route, navigation }) => {
-  const { productId } = route.params;
+const OrderDetails = ({ route, navigation }) => {
+  const { product_id } = route.params;
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -26,13 +26,15 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     fetchProduct();
-  }, [productId]);
+  }, [product_id]);
 
   const fetchProduct = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://back-pdv-production.up.railway.app/produtos/${productId}`);
+      const response = await axios.get(`https://back-pdv-production.up.railway.app/produtos/${product_id}`);
       const data = response.data;
+      
+      console.log("Dados do produto:", data); // Para debug
       
       // CORREÇÃO: Processar imagens corretamente
       const allImages = [];
@@ -40,9 +42,11 @@ const ProductDetailsScreen = ({ route, navigation }) => {
       // Adicionar imagem principal
       if (data.foto_principal) {
         allImages.push(data.foto_principal);
+      } else if (data.imageData) {
+        allImages.push(data.imageData);
       }
       
-      // Adicionar fotos secundárias - CORRIGIDO
+      // CORREÇÃO: Adicionar fotos secundárias - extrair imageData do array de objetos
       if (data.photos && Array.isArray(data.photos)) {
         data.photos.forEach(photo => {
           if (photo.imageData) {
@@ -51,10 +55,16 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         });
       }
 
-      // Se não tiver imagens, usar imageData como fallback
-      if (allImages.length === 0 && data.imageData) {
-        allImages.push(data.imageData);
+      // CORREÇÃO: Também verificar o array fotos (caso exista)
+      if (data.fotos && Array.isArray(data.fotos)) {
+        data.fotos.forEach(foto => {
+          if (foto.imageData) {
+            allImages.push(foto.imageData);
+          }
+        });
       }
+
+      console.log("Imagens processadas:", allImages); // Para debug
 
       setProduct({
         id: data.produto_id,
@@ -105,7 +115,11 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         selectedImageIndex === index && styles.activeThumbnail
       ]}
     >
-      <Image source={{ uri: item }} style={styles.thumbnailImage} />
+      <Image 
+        source={{ uri: item }} 
+        style={styles.thumbnailImage}
+        onError={(error) => console.log("Erro ao cargar thumbnail:", error)}
+      />
     </TouchableOpacity>
   );
 
@@ -121,13 +135,20 @@ const ProductDetailsScreen = ({ route, navigation }) => {
   const currentImage = product.images[selectedImageIndex];
   const hasMultipleImages = product.images.length > 1;
 
+  console.log("Produto carregado:", product); // Para debug
+  console.log("Número de imagens:", product.images.length); // Para debug
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Imagem principal */}
         <View style={styles.imageContainer}>
           {currentImage ? (
-            <Image source={{ uri: currentImage }} style={styles.productImage} />
+            <Image 
+              source={{ uri: currentImage }} 
+              style={styles.productImage}
+              onError={(error) => console.log("Erro ao cargar imagem principal:", error)}
+            />
           ) : (
             <View style={[styles.productImage, styles.placeholderImage]}>
               <Text style={styles.placeholderText}>Sem Imagem</Text>
@@ -136,9 +157,11 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         </View>
 
         {/* Miniaturas das imagens */}
-        {hasMultipleImages && (
+        {hasMultipleImages ? (
           <View style={styles.thumbnailsContainer}>
-            <Text style={styles.thumbnailsTitle}>Mais imagens:</Text>
+            <Text style={styles.thumbnailsTitle}>
+              {product.images.length} {product.images.length === 1 ? 'imagem' : 'imagens'} disponível{product.images.length === 1 ? '' : 's'}
+            </Text>
             <FlatList
               data={product.images}
               renderItem={renderImageThumbnail}
@@ -147,6 +170,10 @@ const ProductDetailsScreen = ({ route, navigation }) => {
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.thumbnailsList}
             />
+          </View>
+        ) : (
+          <View style={styles.thumbnailsContainer}>
+            <Text style={styles.thumbnailsTitle}>1 imagem disponível</Text>
           </View>
         )}
 
@@ -240,4 +267,4 @@ const ProductDetailsScreen = ({ route, navigation }) => {
   );
 };
 
-export default ProductDetailsScreen;
+export default OrderDetails;

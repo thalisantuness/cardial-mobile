@@ -36,7 +36,7 @@ export default StyleSheet.create({
   },
 
   buttonModal: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     height: 30,
     display: "flex",
     flexDirection: "column",
@@ -68,7 +68,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     height: "20%",
     paddingHorizontal: 20,
     paddingTop: 40,
@@ -102,7 +102,7 @@ export default StyleSheet.create({
   },
 
   viewWelcome: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     height: 150,
     width: '90%',
     borderRadius: 15,

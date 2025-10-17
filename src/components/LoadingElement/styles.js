@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { laranjaPrincipal } from '../../colors';
+import { azulPrincipal } from '../../colors';
 
 export default StyleSheet.create({
     container: {
@@ -7,6 +7,6 @@ export default StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      color: laranjaPrincipal,
+      color: azulPrincipal,
     },
   });

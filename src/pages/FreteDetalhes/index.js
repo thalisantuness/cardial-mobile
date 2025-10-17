@@ -99,7 +99,7 @@ export default function FreteDetalhesScreen() {
     };
 
     if (loading) {
-        return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color={colors.laranjaPrincipal} />;
+        return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color={colors.azulPrincipal} />;
     }
 
     if (!frete) {

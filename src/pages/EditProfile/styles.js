@@ -16,7 +16,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: colors.laranjaPrincipal,
+        backgroundColor: colors.azulPrincipal,
         height: 90,
         paddingHorizontal: 15,
         paddingTop: 40,
@@ -86,7 +86,7 @@ export default StyleSheet.create({
         color: 'black'
     },
     saveButton: {
-        backgroundColor: colors.laranjaPrincipal,
+        backgroundColor: colors.azulPrincipal,
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
@@ -165,7 +165,7 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     changeButton: {
-        backgroundColor: colors.laranjaPrincipal,
+        backgroundColor: colors.azulPrincipal,
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 8,

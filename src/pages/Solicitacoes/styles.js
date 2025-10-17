@@ -7,7 +7,7 @@ export default StyleSheet.create({
     backgroundColor: colors.background,
   },
   firstContainer: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     height: "15%",
     justifyContent: 'center',
     alignItems: 'center',

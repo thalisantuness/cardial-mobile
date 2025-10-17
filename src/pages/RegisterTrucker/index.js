@@ -848,7 +848,7 @@ export default function RegisterTrucker() {
             ref={refs.cidade}
           >
             <Text style={styles.pickerText}>{endereco.cidade || 'Selecione a Cidade'}</Text>
-            {loadingCidades ? <ActivityIndicator size="small" color={colors.laranjaPrincipal} /> : <Text style={styles.pickerArrow}>▼</Text>}
+            {loadingCidades ? <ActivityIndicator size="small" color={colors.azulPrincipal} /> : <Text style={styles.pickerArrow}>▼</Text>}
           </TouchableOpacity>
           {errors.cidade && <Text style={styles.errorText}>{errors.cidade}</Text>}
         </View>
@@ -1120,7 +1120,7 @@ export default function RegisterTrucker() {
       <Modal transparent={true} visible={modalEstadoVisivel} onRequestClose={() => setModalEstadoVisivel(false)}>
         <TouchableOpacity style={styles.modalOverlay} onPress={() => setModalEstadoVisivel(false)}>
           <View style={[styles.modalContent, { height: '80%' }]}>
-            {loadingEstados ? <ActivityIndicator size="large" color={colors.laranjaPrincipal} /> : (
+            {loadingEstados ? <ActivityIndicator size="large" color={colors.azulPrincipal} /> : (
               <FlatList
                 data={estados}
                 keyExtractor={(item) => item.id.toString()}
@@ -1138,7 +1138,7 @@ export default function RegisterTrucker() {
       <Modal transparent={true} visible={modalCidadeVisivel} onRequestClose={() => setModalCidadeVisivel(false)}>
         <TouchableOpacity style={styles.modalOverlay} onPress={() => setModalCidadeVisivel(false)}>
           <View style={[styles.modalContent, { height: '80%' }]}>
-            {loadingCidades ? <ActivityIndicator size="large" color={colors.laranjaPrincipal} /> : (
+            {loadingCidades ? <ActivityIndicator size="large" color={colors.azulPrincipal} /> : (
               <FlatList
                 data={cidades}
                 keyExtractor={(item) => item.id.toString()}

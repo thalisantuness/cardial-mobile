@@ -1,4 +1,4 @@
-// src/pages/ProductDetails/styles.js (ATUALIZADO)
+// src/pages/OrderDetails/styles.js (ATUALIZADO)
 import { StyleSheet, Dimensions } from "react-native";
 import { colors } from "../../colors";
 
@@ -44,11 +44,12 @@ export default StyleSheet.create({
     borderBottomColor: '#f0f0f0',
   },
   thumbnailsTitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
-    color: colors.text,
+    color: colors.cinza,
     marginBottom: 10,
     marginLeft: 15,
+    textAlign: 'center',
   },
   thumbnailsList: {
     paddingHorizontal: 15,
@@ -63,6 +64,7 @@ export default StyleSheet.create({
   },
   activeThumbnail: {
     borderColor: colors.azulPrincipal,
+    borderWidth: 3,
   },
   thumbnailImage: {
     width: '100%',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { useContextProvider } from '../../context/AuthContext'; 
-import { laranjaPrincipal } from '../../colors';
+import { azulPrincipal } from '../../colors';
 import styles from './styles';
 
 const Loading = () => {
@@ -11,7 +11,7 @@ const Loading = () => {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={laranjaPrincipal} />
+      <ActivityIndicator size="large" color={azulPrincipal} />
     </View>
   );
 };

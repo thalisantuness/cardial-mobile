@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OrdersScreen from "../pages/Orders";
-// import ProductDetailsScreen from "../pages/ProductDetails";
-// import ProductDetailsScreen from "../pages/Orders/ProductDetails";
+import OrderDetails from "../pages/OrderDetails";
 
 
 const Stack = createNativeStackNavigator();
@@ -14,11 +13,11 @@ function SolicitacoesStack() {
                 component={OrdersScreen}
                 options={{ title: "Pedidos" }}
             />
-          {/* <Stack.Screen
-                name="ProductDetails"
-                component={ProductDetailsScreen}
-                options={{ title: "Detalhes do Produto" }}
-            />  */}
+          <Stack.Screen
+                name="OrderDetails"
+                component={OrderDetails}
+                options={{ title: "Detalhes do Produto do pedido" }}
+            /> 
           
         </Stack.Navigator>
     );

@@ -149,7 +149,7 @@ export default function SolicitacoesScreen({ navigation }) {
             </View>
 
             {loading ? (
-                <ActivityIndicator size="large" color={colors.laranjaPrincipal} style={{ flex: 1 }} />
+                <ActivityIndicator size="large" color={colors.azulPrincipal} style={{ flex: 1 }} />
             ) : (
                 <FlatList
                     data={solicitacoes}

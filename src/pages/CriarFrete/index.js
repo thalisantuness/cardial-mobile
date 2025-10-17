@@ -257,7 +257,7 @@ export default function CriarFreteScreen() {
         >
             <TouchableOpacity style={styles.modalOverlay} onPress={() => setModalLocalidade({ visible: false, type: null })}>
                 <View style={[styles.modalContent, { height: '80%' }]}>
-                    {loadingLocalidades ? <ActivityIndicator size="large" color={colors.laranjaPrincipal} /> : (
+                    {loadingLocalidades ? <ActivityIndicator size="large" color={colors.azulPrincipal} /> : (
                         <FlatList
                             data={modalLocalidade.type?.includes('Estado') ? estados : cidades}
                             keyExtractor={(item) => item.id.toString()}

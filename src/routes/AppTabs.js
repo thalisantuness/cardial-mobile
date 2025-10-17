@@ -17,7 +17,7 @@ function AppTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: colors.laranjaPrincipal,
+        tabBarActiveTintColor: colors.azulPrincipal,
         tabBarInactiveTintColor: colors.cinza,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;

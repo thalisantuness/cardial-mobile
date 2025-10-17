@@ -157,7 +157,7 @@ export default StyleSheet.create({
     backgroundColor: colors.cinza,
   },
   confirmModalButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
   },
   modalButtonText: {
     color: colors.white,

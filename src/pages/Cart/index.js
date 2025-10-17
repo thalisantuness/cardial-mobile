@@ -1,3 +1,4 @@
+// src/pages/Cart/index.js (atualizado)
 import React from "react";
 import {
   View,
@@ -5,51 +6,25 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  Alert,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useCart } from "../../context/CartContext";
 import styles from "./styles";
 
-const CartScreen = ({ route, navigation }) => {
-  const { cart } = route.params || { cart: [] };
+const CartScreen = ({ navigation }) => {
+  const { cart, updateQuantity, removeFromCart, getTotal } = useCart();
 
-  const updateQuantity = (productId, newQuantity) => {
-    if (newQuantity === 0) {
-      removeFromCart(productId);
-    } else {
-      // Em uma implementação real, você atualizaria o estado global do carrinho
-      Alert.alert("Info", "Quantidade atualizada - implementar estado global");
-    }
-  };
-
-  const removeFromCart = (productId) => {
-    Alert.alert(
-      "Remover produto",
-      "Deseja remover este produto do carrinho?",
-      [
-        { text: "Cancelar", style: "cancel" },
-        { 
-          text: "Remover", 
-          style: "destructive",
-          onPress: () => {
-            Alert.alert("Sucesso", "Produto removido do carrinho - implementar estado global");
-          }
-        }
-      ]
-    );
-  };
-
-  const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const handleRemoveFromCart = (productId) => {
+    removeFromCart(productId);
   };
 
   const renderCartItem = ({ item }) => (
     <View style={styles.cartItem}>
-      <Image source={{ uri: item.image }} style={styles.productImage} />
+      <Image source={{ uri: item.image || item.foto_principal }} style={styles.productImage} />
       
       <View style={styles.productInfo}>
-        <Text style={styles.productName}>{item.name}</Text>
-        <Text style={styles.productPrice}>R$ {item.price.toFixed(2)}</Text>
+        <Text style={styles.productName}>{item.name || item.nome}</Text>
+        <Text style={styles.productPrice}>R$ {(item.price || item.valor)?.toFixed(2)}</Text>
         
         <View style={styles.quantityContainer}>
           <TouchableOpacity 
@@ -72,17 +47,19 @@ const CartScreen = ({ route, navigation }) => {
 
       <View style={styles.itemActions}>
         <Text style={styles.itemTotal}>
-          R$ {(item.price * item.quantity).toFixed(2)}
+          R$ {((item.price || item.valor) * item.quantity)?.toFixed(2)}
         </Text>
         <TouchableOpacity 
           style={styles.removeButton}
-          onPress={() => removeFromCart(item.id)}
+          onPress={() => handleRemoveFromCart(item.id)}
         >
           <Feather name="trash-2" size={16} color="#FF4444" />
         </TouchableOpacity>
       </View>
     </View>
   );
+
+  const totalPrice = getTotal();
 
   return (
     <View style={styles.container}>
@@ -106,7 +83,7 @@ const CartScreen = ({ route, navigation }) => {
           </Text>
           <TouchableOpacity 
             style={styles.continueShoppingButton}
-            onPress={() => navigation.navigate("Orders")}
+            onPress={() => navigation.navigate("HomeScreen")}
           >
             <Text style={styles.continueShoppingText}>Continuar Comprando</Text>
           </TouchableOpacity>
@@ -115,7 +92,7 @@ const CartScreen = ({ route, navigation }) => {
         <>
           <FlatList
             data={cart}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={renderCartItem}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.cartList}
@@ -124,12 +101,12 @@ const CartScreen = ({ route, navigation }) => {
           <View style={styles.footer}>
             <View style={styles.totalContainer}>
               <Text style={styles.totalLabel}>Total:</Text>
-              <Text style={styles.totalPrice}>R$ {getTotalPrice().toFixed(2)}</Text>
+              <Text style={styles.totalPrice}>R$ {totalPrice?.toFixed(2)}</Text>
             </View>
             
             <TouchableOpacity 
               style={styles.checkoutButton}
-              onPress={() => navigation.navigate("Checkout", { cart, total: getTotalPrice() })}
+              onPress={() => navigation.navigate("Checkout", { cart, total: totalPrice })}
             >
               <Text style={styles.checkoutButtonText}>Finalizar Pedido</Text>
               <Feather name="arrow-right" size={20} color="white" />

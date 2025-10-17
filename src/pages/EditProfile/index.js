@@ -306,7 +306,7 @@ export default function EditProfileScreen() {
     if (loading) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color={colors.laranjaPrincipal} />
+                <ActivityIndicator size="large" color={colors.azulPrincipal} />
                 <Text>Carregando seu perfil...</Text>
             </View>
         );

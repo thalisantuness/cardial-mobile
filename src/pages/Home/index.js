@@ -64,7 +64,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("Fretes")}
         >
           <View style={styles.optionIconContainer}>
-            <Feather name="truck" size={32} color={colors.laranjaPrincipal} />
+            <Feather name="truck" size={32} color={colors.azulPrincipal} />
           </View>
           <Text style={styles.optionText}>Fretes</Text>
         </TouchableOpacity>
@@ -74,7 +74,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("Solicitacoes")}
         >
           <View style={styles.optionIconContainer}>
-            <Feather name="inbox" size={32} color={colors.laranjaPrincipal} />
+            <Feather name="inbox" size={32} color={colors.azulPrincipal} />
           </View>
           <Text style={styles.optionText}>Solicitações</Text>
         </TouchableOpacity>
@@ -84,7 +84,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("Chat")}
         >
           <View style={styles.optionIconContainer}>
-            <Feather name="message-circle" size={32} color={colors.laranjaPrincipal} />
+            <Feather name="message-circle" size={32} color={colors.azulPrincipal} />
           </View>
           <Text style={styles.optionText}>Chat</Text>
         </TouchableOpacity>

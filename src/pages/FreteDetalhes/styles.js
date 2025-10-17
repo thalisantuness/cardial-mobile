@@ -10,7 +10,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     height: 90,
     paddingHorizontal: 15,
     paddingTop: 40,
@@ -79,7 +79,7 @@ export default StyleSheet.create({
     margin: 10,
   },
   editButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     flex: 1,
     marginHorizontal: 5
   },

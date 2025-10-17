@@ -15,7 +15,7 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   addButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -100,7 +100,7 @@ export default StyleSheet.create({
   valueText: {
     fontSize: 16,
     fontWeight: "bold",
-    color: colors.laranjaPrincipal,
+    color: colors.azulPrincipal,
   },
   emptyMessage: {
     textAlign: "center",

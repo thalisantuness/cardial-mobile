@@ -354,7 +354,7 @@ export default function ChatScreen({ route, navigation }) {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.laranjaPrincipal} />
+        <ActivityIndicator size="large" color={colors.azulPrincipal} />
       </View>
     );
   }
@@ -397,7 +397,7 @@ export default function ChatScreen({ route, navigation }) {
               style={styles.documentButton}
               onPress={enviarDocumentos}
             >
-              <Feather name="paperclip" size={25} color={colors.laranjaPrincipal} />
+              <Feather name="paperclip" size={25} color={colors.azulPrincipal} />
             </TouchableOpacity>
           )}
           <TextInput
@@ -416,7 +416,7 @@ export default function ChatScreen({ route, navigation }) {
             <Feather
               name="send"
               size={25}
-              color={novaMensagem.trim() ? colors.laranjaPrincipal : colors.cinza}
+              color={novaMensagem.trim() ? colors.azulPrincipal : colors.cinza}
             />
           </TouchableOpacity>
         </View>

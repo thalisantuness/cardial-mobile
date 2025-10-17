@@ -1,3 +1,4 @@
+// src/pages/Cart/styles.js (atualizado)
 import { StyleSheet } from "react-native";
 import { colors } from "../../colors";
 
@@ -45,7 +46,7 @@ export default StyleSheet.create({
     marginBottom: 24,
   },
   continueShoppingButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 8,
@@ -88,7 +89,7 @@ export default StyleSheet.create({
   },
   productPrice: {
     fontSize: 14,
-    color: colors.laranjaPrincipal,
+    color: colors.azulPrincipal,
     fontWeight: "bold",
     marginBottom: 8,
   },
@@ -140,10 +141,10 @@ export default StyleSheet.create({
   totalPrice: {
     fontSize: 20,
     fontWeight: "bold",
-    color: colors.laranjaPrincipal,
+    color: colors.azulPrincipal,
   },
   checkoutButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

@@ -11,7 +11,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     height: 90,
     paddingHorizontal: 15,
     paddingTop: 40,
@@ -122,7 +122,7 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   modalButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     padding: 15,
     borderRadius: 8,
     flex: 1,
@@ -203,15 +203,15 @@ export default StyleSheet.create({
     width: 24,
     height: 24,
     borderWidth: 2,
-    borderColor: colors.laranjaPrincipal,
+    borderColor: colors.azulPrincipal,
     borderRadius: 4,
     justifyContent: "center",
     alignItems: "center",
     marginRight: 8,
   },
   checkboxChecked: {
-    backgroundColor: colors.laranjaPrincipal,
-    borderColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
+    borderColor: colors.azulPrincipal,
   },
   checkboxLabel: {
     fontSize: 16,
@@ -310,7 +310,7 @@ export default StyleSheet.create({
     borderRadius: 8,
   },
   moreFiltersText: {
-    color: colors.laranjaPrincipal,
+    color: colors.azulPrincipal,
     fontWeight: "bold",
     marginRight: 5,
   },
@@ -334,7 +334,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
   applyButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
   },
   applyButtonText: {
     color: "white",
@@ -346,7 +346,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     padding: 10,
     marginHorizontal: 15,
     marginTop: 10,

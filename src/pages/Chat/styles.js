@@ -16,7 +16,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     height: 90,
     paddingHorizontal: 15,
     paddingTop: 40,
@@ -52,7 +52,7 @@ export default StyleSheet.create({
     marginBottom: 5,
   },
   currentUserBubble: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     borderTopRightRadius: 4,
   },
   otherUserBubble: {
@@ -76,7 +76,7 @@ export default StyleSheet.create({
   },
   naoLida: {
     fontSize: 11,
-    color: colors.laranjaPrincipal,
+    color: colors.azulPrincipal,
     fontStyle: 'italic',
     marginLeft: 10,
   },

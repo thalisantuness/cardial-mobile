@@ -22,7 +22,7 @@ export default StyleSheet.create({
     color: colors.primary,
   },
   cartButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     width: 50,
     height: 50,
     borderRadius: 25,
@@ -92,6 +92,16 @@ export default StyleSheet.create({
     height: 200,
     resizeMode: "cover",
   },
+  placeholderImage: {
+    backgroundColor: colors.cinza,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  placeholderText: {
+    color: colors.background,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
   productInfo: {
     padding: 16,
   },
@@ -134,10 +144,10 @@ export default StyleSheet.create({
   productPrice: {
     fontSize: 20,
     fontWeight: "bold",
-    color: colors.laranjaPrincipal,
+    color: colors.azulPrincipal,
   },
   addButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 16,
@@ -159,7 +169,7 @@ export default StyleSheet.create({
     marginTop: 50,
   },
   footerButton: {
-    backgroundColor: colors.laranjaPrincipal,
+    backgroundColor: colors.azulPrincipal,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

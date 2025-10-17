@@ -535,7 +535,7 @@ export default function FretesScreen() {
               </TouchableOpacity>
             </View>
             {loadingLocalidades ? (
-              <ActivityIndicator size="large" color={colors.laranjaPrincipal} />
+              <ActivityIndicator size="large" color={colors.azulPrincipal} />
             ) : (
               <FlatList
                 data={
@@ -627,7 +627,7 @@ export default function FretesScreen() {
               onPress={() => setModalFiltroVisible(true)}
             >
               <Text style={styles.moreFiltersText}>Mais filtros</Text>
-              <Feather name="filter" size={16} color={colors.laranjaPrincipal} />
+              <Feather name="filter" size={16} color={colors.azulPrincipal} />
             </TouchableOpacity>
           </View>
           
@@ -703,7 +703,7 @@ export default function FretesScreen() {
       )}
 
       {loading ? (
-        <ActivityIndicator style={{ marginTop: 20 }} size="large" color={colors.laranjaPrincipal} />
+        <ActivityIndicator style={{ marginTop: 20 }} size="large" color={colors.azulPrincipal} />
       ) : (
         <FlatList
           data={fretes}
