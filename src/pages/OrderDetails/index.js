@@ -11,7 +11,7 @@ import {
   FlatList,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import axios from "axios";
+import { getProdutoById } from "../../services/api";
 import { useCart } from "../../context/CartContext";
 import styles from "./styles";
 import { colors } from "../../colors";
@@ -31,8 +31,7 @@ const OrderDetails = ({ route, navigation }) => {
   const fetchProduct = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://back-pdv-production.up.railway.app/produtos/${product_id}`);
-      const data = response.data;
+      const data = await getProdutoById(product_id);
       
       console.log("Dados do produto:", data); // Para debug
       

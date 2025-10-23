@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import axios from "axios";
+import { getProdutos } from "../../services/api";
 import { useCart } from "../../context/CartContext";
 import styles from "./styles";
 import { useContextProvider } from "../../context/AuthContext";
@@ -35,10 +35,10 @@ const OrdersScreen = ({ navigation }) => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("https://back-pdv-production.up.railway.app/produtos");
+      const data = await getProdutos();
      
-      if (Array.isArray(response.data)) {
-        const produtosData = response.data.map(produto => ({
+      if (Array.isArray(data)) {
+        const produtosData = data.map(produto => ({
           id: produto.produto_id,
           name: produto.nome,
           price: produto.valor,
@@ -130,17 +130,26 @@ const OrdersScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.pageTitle}>Nossos Serviços</Text>
-        <TouchableOpacity
-          style={styles.cartButton}
-          onPress={() => navigation.navigate("Carrinho")}
-        >
-          <Feather name="shopping-cart" size={20} color="white" />
-          {getCartItemsCount() > 0 && (
-            <View style={styles.cartBadge}>
-              <Text style={styles.cartBadgeText}>{getCartItemsCount()}</Text>
-            </View>
-          )}
-        </TouchableOpacity>
+        <View style={styles.headerButtons}>
+          <TouchableOpacity
+            style={styles.ordersListButton}
+            onPress={() => navigation.navigate("OrdersList")}
+          >
+            <Feather name="list" size={18} color="white" />
+            <Text style={styles.ordersListButtonText}>Pedidos</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cartButton}
+            onPress={() => navigation.navigate("Carrinho")}
+          >
+            <Feather name="shopping-cart" size={20} color="white" />
+            {getCartItemsCount() > 0 && (
+              <View style={styles.cartBadge}>
+                <Text style={styles.cartBadgeText}>{getCartItemsCount()}</Text>
+              </View>
+            )}
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.searchContainer}>

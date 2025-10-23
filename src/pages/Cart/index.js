@@ -18,9 +18,33 @@ const CartScreen = ({ navigation }) => {
     removeFromCart(productId);
   };
 
-  const renderCartItem = ({ item }) => (
-    <View style={styles.cartItem}>
-      <Image source={{ uri: item.image || item.foto_principal }} style={styles.productImage} />
+  const renderCartItem = ({ item }) => {
+    // Validar imagem do carrinho
+    let cartImageUri = null;
+    try {
+      const rawUri = item.image || item.foto_principal;
+      if (rawUri && 
+          typeof rawUri === 'string' && 
+          rawUri.trim() !== '' &&
+          (rawUri.startsWith('http://') || rawUri.startsWith('https://'))) {
+        cartImageUri = rawUri.trim();
+      }
+    } catch (e) {
+      // Silenciosamente ignora erros de validação
+    }
+    
+    return (
+      <View style={styles.cartItem}>
+        {cartImageUri ? (
+          <Image 
+            source={{ uri: cartImageUri }} 
+            style={styles.productImage}
+          />
+        ) : (
+          <View style={[styles.productImage, { backgroundColor: '#E0E0E0', justifyContent: 'center', alignItems: 'center' }]}>
+            <Feather name="package" size={24} color="#999" />
+          </View>
+        )}
       
       <View style={styles.productInfo}>
         <Text style={styles.productName}>{item.name || item.nome}</Text>
@@ -57,7 +81,8 @@ const CartScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </View>
-  );
+    );
+  };
 
   const totalPrice = getTotal();
 

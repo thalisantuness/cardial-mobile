@@ -1,7 +1,10 @@
 import axios from "axios";
 
-export const api = axios.create({ baseURL: "https://truckage-api-production.up.railway.app" });
-//export const api = axios.create({ baseURL: "http://192.168.3.7:4000" });
+// API do sistema POS (Serviços, Produtos, Agendamentos, Login, etc)
+export const apiPOS = axios.create({ baseURL: "https://back-pdv-production.up.railway.app" });
+
+// Alias para compatibilidade com código existente
+export const api = apiPOS;
 
 export async function login(data) {
   const response = await api.post("/login", { email: data.email, senha: data.senha });
@@ -154,6 +157,103 @@ export async function updateUserDocument(id, docType, imageBase64, token) {
       headers: { Authorization: `Bearer ${token}` },
     }
   );
+  return response.data;
+}
+
+
+// Função para buscar serviços prestados
+export async function getServicos() {
+  const response = await apiPOS.get("/servicos");
+  return response.data;
+}
+
+// ============= FUNÇÕES DE AGENDAMENTOS =============
+
+// Buscar todos os agendamentos
+export async function getAgendamentos() {
+  const response = await apiPOS.get("/agendamentos");
+  return response.data;
+}
+
+// Buscar agendamento por ID
+export async function getAgendamentoById(agendamento_id) {
+  const response = await apiPOS.get(`/agendamentos/${agendamento_id}`);
+  return response.data;
+}
+
+// Criar novo agendamento
+export async function criarAgendamento(data) {
+  const response = await apiPOS.post("/agendamentos", data);
+  return response.data;
+}
+
+// Atualizar agendamento
+export async function atualizarAgendamento(agendamento_id, data) {
+  const response = await apiPOS.put(`/agendamentos/${agendamento_id}`, data);
+  return response.data;
+}
+
+// Cancelar agendamento
+export async function cancelarAgendamento(agendamento_id) {
+  const response = await apiPOS.patch(`/agendamentos/${agendamento_id}/cancelar`);
+  return response.data;
+}
+
+// Atualizar status do agendamento
+export async function atualizarStatusAgendamento(agendamento_id, status) {
+  const response = await apiPOS.patch(`/agendamentos/${agendamento_id}/status`, { status });
+  return response.data;
+}
+
+// ============= FUNÇÕES DE PRODUTOS =============
+
+// Buscar todos os produtos
+export async function getProdutos() {
+  const response = await apiPOS.get("/produtos");
+  return response.data;
+}
+
+// Buscar produto por ID
+export async function getProdutoById(produto_id) {
+  const response = await apiPOS.get(`/produtos/${produto_id}`);
+  return response.data;
+}
+
+// ============= FUNÇÕES DE PEDIDOS =============
+
+// Buscar produtos disponíveis para pedidos
+export async function getProdutosPedido() {
+  const response = await apiPOS.get("/produtos-pedido");
+  return response.data;
+}
+
+// Buscar todos os pedidos
+export async function getPedidos() {
+  const response = await apiPOS.get("/pedidos");
+  return response.data;
+}
+
+// Buscar pedido por ID
+export async function getPedidoById(pedido_id) {
+  const response = await apiPOS.get(`/pedidos/${pedido_id}`);
+  return response.data;
+}
+
+// Criar novo pedido
+export async function criarPedido(data) {
+  const response = await apiPOS.post("/pedidos", data);
+  return response.data;
+}
+
+// Atualizar pedido
+export async function atualizarPedido(pedido_id, data) {
+  const response = await apiPOS.put(`/pedidos/${pedido_id}`, data);
+  return response.data;
+}
+
+// Deletar pedido
+export async function deletarPedido(pedido_id) {
+  const response = await apiPOS.delete(`/pedidos/${pedido_id}`);
   return response.data;
 }
 

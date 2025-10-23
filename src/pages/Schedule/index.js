@@ -6,77 +6,76 @@ import {
   StatusBar,
   FlatList,
   ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import styles from "./styles";
 import { useContextProvider } from "../../context/AuthContext";
+import { getAgendamentos } from "../../services/api";
 
 const SchedulesScreen = ({ navigation }) => {
   const [schedules, setSchedules] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const { user } = useContextProvider();
-
-  // Dados mockados
-  const mockSchedules = [
-    {
-      id: "1",
-      title: "Entrega de Eletrônicos",
-      description: "Entrega de notebooks e tablets",
-      status: "agendado",
-      date: "2024-01-15 14:30:00",
-      client: "João Silva",
-      driver: "Carlos Santos",
-      value: 150.00,
-      address: "Rua das Flores, 123 - Centro"
-    },
-    {
-      id: "2",
-      title: "Mudança Residencial",
-      description: "Mudança completa apartamento",
-      status: "em_andamento",
-      date: "2024-01-16 09:00:00",
-      client: "Maria Oliveira",
-      driver: "Pedro Costa",
-      value: 450.00,
-      address: "Av. Principal, 456 - Jardim"
-    },
-    {
-      id: "3",
-      title: "Transporte de Móveis",
-      description: "Transporte de sofá e mesa",
-      status: "concluido",
-      date: "2024-01-14 11:00:00",
-      client: "Ana Souza",
-      driver: "Lucas Lima",
-      value: 120.00,
-      address: "Rua das Árvores, 789 - Parque"
-    },
-    {
-      id: "4",
-      title: "Entrega Rápida Documentos",
-      description: "Entrega urgente de documentos",
-      status: "cancelado",
-      date: "2024-01-17 16:00:00",
-      client: "Roberto Alves",
-      driver: "Fernando Dias",
-      value: 80.00,
-      address: "Praça Central, 321 - Centro"
-    }
-  ];
 
   const fetchSchedules = async () => {
     try {
       setLoading(true);
-      // Simulando chamada API
-      setTimeout(() => {
-        setSchedules(mockSchedules);
-        setLoading(false);
-      }, 1000);
+      const data = await getAgendamentos();
+      
+      if (Array.isArray(data)) {
+        // Mapear dados da API para o formato esperado pelo componente
+        const formattedSchedules = data.map(agendamento => {
+          // Extrair dados dos objetos relacionados
+          // Tudo é Usuario, o role define se é empresa ou cliente
+          const servico = agendamento.Servico || {};
+          const usuario = agendamento.Usuario || {}; // Usuário que fez o agendamento
+          const empresaServico = servico.Usuario || {}; // Empresa dona do serviço (se existir)
+          const observacao = agendamento.observacao || "";
+          
+          // Tentar extrair telefone e observações separadas da observacao
+          const parts = observacao.split(' | ');
+          const nomeCliente = parts[0] || usuario.nome || "Cliente não informado";
+          const telefoneMatch = observacao.match(/Tel:\s*([^|]+)/);
+          const telefone = telefoneMatch ? telefoneMatch[1].trim() : "";
+          const obsTexto = parts.length > 2 ? parts.slice(2).join(' | ') : "";
+          
+          return {
+            id: agendamento.agendamento_id?.toString(),
+            title: servico.nome || `Agendamento #${agendamento.agendamento_id}`,
+            description: obsTexto || observacao || "Sem observações",
+            status: agendamento.status || "agendado",
+            date: agendamento.dia_marcado || new Date().toISOString(),
+            client: nomeCliente,
+            clientPhone: telefone,
+            clientEmail: usuario.email || "",
+            clientRole: usuario.role || "",
+            service: servico.nome || "Serviço não informado",
+            servicoId: agendamento.servico_id,
+            value: parseFloat(servico.valor || 0),
+            foto_servico: servico.foto_principal || null,
+            empresa: empresaServico.nome || "",
+            empresaRole: empresaServico.role || "",
+            data_cadastro: agendamento.data_cadastro,
+            data_update: agendamento.data_update
+          };
+        });
+        
+        setSchedules(formattedSchedules);
+      }
     } catch (error) {
-      console.error("Error fetching schedules:", error);
-      alert("Erro ao carregar agendamentos.");
+      console.error("Erro ao buscar agendamentos:", error);
+      alert("Erro ao carregar agendamentos. Verifique sua conexão.");
+    } finally {
       setLoading(false);
+      setRefreshing(false);
     }
+  };
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchSchedules();
   };
 
   useEffect(() => {
@@ -132,6 +131,13 @@ const SchedulesScreen = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.servicesButton}
+          onPress={() => navigation.navigate("Services")}
+        >
+          <Feather name="scissors" size={18} color="white" />
+          <Text style={styles.servicesButtonText}>Serviços</Text>
+        </TouchableOpacity>
         {canManageSchedules && (
           <TouchableOpacity
             style={styles.addButton}
@@ -150,11 +156,24 @@ const SchedulesScreen = ({ navigation }) => {
         {loading ? (
           <ActivityIndicator size="large" color="#000000" />
         ) : schedules.length === 0 ? (
-          <Text style={styles.emptyMessage}>Nenhum agendamento encontrado</Text>
+          <View style={styles.emptyContainer}>
+            <Feather name="calendar" size={64} color="#CCC" />
+            <Text style={styles.emptyMessage}>Nenhum agendamento encontrado</Text>
+            <Text style={styles.emptySubtext}>
+              Quando você agendar serviços, eles aparecerão aqui
+            </Text>
+          </View>
         ) : (
           <FlatList
             data={schedules}
             keyExtractor={(item) => String(item.id)}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+                colors={["#000000"]}
+              />
+            }
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={styles.item}
@@ -178,16 +197,34 @@ const SchedulesScreen = ({ navigation }) => {
                   </View>
                 </View>
 
-                <Text style={styles.description}>{item.description}</Text>
+                {item.service && (
+                  <View style={styles.serviceContainer}>
+                    <Feather name="briefcase" size={14} color="#385b3e" />
+                    <Text style={styles.serviceText}>
+                      {item.service}
+                    </Text>
+                  </View>
+                )}
 
                 <View style={styles.infoContainer}>
                   <Text style={styles.clientText}>
                     Cliente: {item.client}
                   </Text>
-                  <Text style={styles.driverText}>
-                    Motorista: {item.driver}
-                  </Text>
+                  {item.clientPhone && (
+                    <Text style={styles.phoneText}>
+                      Tel: {item.clientPhone}
+                    </Text>
+                  )}
+                  {item.clientEmail && (
+                    <Text style={styles.phoneText}>
+                      Email: {item.clientEmail}
+                    </Text>
+                  )}
                 </View>
+
+                {item.description && (
+                  <Text style={styles.description}>{item.description}</Text>
+                )}
 
                 <View style={styles.dateContainer}>
                   <Feather name="calendar" size={14} color="#385b3e" />

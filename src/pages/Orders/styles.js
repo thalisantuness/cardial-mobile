@@ -21,6 +21,25 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: colors.primary,
   },
+  headerButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  ordersListButton: {
+    backgroundColor: colors.azulPrincipal,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+  },
+  ordersListButtonText: {
+    color: "white",
+    fontSize: 14,
+    fontWeight: "600",
+    marginLeft: 6,
+  },
   cartButton: {
     backgroundColor: colors.azulPrincipal,
     width: 50,

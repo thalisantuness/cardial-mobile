@@ -80,20 +80,33 @@ const CarrouselTopPlaces = ({ produtos }) => {
   const { addToCart } = useCart();
 
   const CardTopLocal = ({ item }) => {
-    const hasImage = item.imageData || item.foto_principal;
+    // Validar URL da imagem
+    let imageUri = null;
+    try {
+      const rawUri = item.imageData || item.foto_principal;
+      if (rawUri && 
+          typeof rawUri === 'string' && 
+          rawUri.trim() !== '' &&
+          (rawUri.startsWith('http://') || rawUri.startsWith('https://'))) {
+        imageUri = rawUri.trim();
+      }
+    } catch (e) {
+      // Silenciosamente ignora erros de validação
+    }
+
     const secondaryImages = item.photos ? item.photos.slice(0, 3) : [];
 
     return (
       <View style={styles.divPopularLocation}>
         <View style={styles.divImages}>
-          {hasImage ? (
+          {imageUri ? (
             <TouchableOpacity
               onPress={() => navigation.navigate("ProductDetails", { productId: item.id })}
               activeOpacity={0.8}
             >
               <Image
                 style={styles.imageDecoration}
-                source={{ uri: item.imageData || item.foto_principal }}
+                source={{ uri: imageUri }}
               />
             </TouchableOpacity>
           ) : (
@@ -105,18 +118,26 @@ const CarrouselTopPlaces = ({ produtos }) => {
           {/* Imagens secundárias */}
           {secondaryImages.length > 0 && (
             <View style={styles.divAlternativeImages}>
-              {secondaryImages.map((image, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => navigation.navigate("ProductDetails", { productId: item.id })}
-                  activeOpacity={0.7}
-                >
-                  <Image
-                    style={styles.smallImage}
-                    source={{ uri: image }}
-                  />
-                </TouchableOpacity>
-              ))}
+              {secondaryImages.map((image, index) => {
+                // Validar cada imagem secundária
+                const isValidSecondary = image && 
+                                        typeof image === 'string' && 
+                                        image.trim() !== '' &&
+                                        (image.startsWith('http://') || image.startsWith('https://'));
+                
+                return isValidSecondary ? (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => navigation.navigate("ProductDetails", { productId: item.id })}
+                    activeOpacity={0.7}
+                  >
+                    <Image
+                      style={styles.smallImage}
+                      source={{ uri: image.trim() }}
+                    />
+                  </TouchableOpacity>
+                ) : null;
+              })}
             </View>
           )}
         </View>
@@ -312,7 +333,20 @@ export default function Store() {
                 data={filteredProdutos.slice(0, 5)} // Mostrar apenas 5 resultados no modal
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => {
-                  const hasImage = item.imageData || item.foto_principal;
+                  // Validar imagem do modal
+                  let modalImageUri = null;
+                  try {
+                    const rawUri = item.imageData || item.foto_principal;
+                    if (rawUri && 
+                        typeof rawUri === 'string' && 
+                        rawUri.trim() !== '' &&
+                        (rawUri.startsWith('http://') || rawUri.startsWith('https://'))) {
+                      modalImageUri = rawUri.trim();
+                    }
+                  } catch (e) {
+                    // Silenciosamente ignora erros de validação
+                  }
+                  
                   return (
                     <TouchableOpacity
                       style={styles.searchResultItem}
@@ -321,9 +355,9 @@ export default function Store() {
                         navigation.navigate("ProductDetails", { productId: item.id });
                       }}
                     >
-                      {hasImage ? (
+                      {modalImageUri ? (
                         <Image
-                          source={{ uri: item.imageData || item.foto_principal }}
+                          source={{ uri: modalImageUri }}
                           style={styles.resultImage}
                         />
                       ) : (
