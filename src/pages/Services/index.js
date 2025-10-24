@@ -361,22 +361,8 @@ export default function Services() {
               )}
 
               <View style={styles.formContainer}>
-                <Text style={styles.formLabel}>Nome do Cliente *</Text>
-                <TextInput
-                  style={styles.formInput}
-                  placeholder="Digite o nome completo"
-                  value={clienteNome}
-                  onChangeText={setClienteNome}
-                />
 
-                <Text style={styles.formLabel}>Telefone *</Text>
-                <TextInput
-                  style={styles.formInput}
-                  placeholder="(11) 98765-4321"
-                  value={clienteTelefone}
-                  onChangeText={setClienteTelefone}
-                  keyboardType="phone-pad"
-                />
+               
 
                 <Text style={styles.formLabel}>Data do Agendamento</Text>
                 <TouchableOpacity

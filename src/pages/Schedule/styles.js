@@ -1,11 +1,12 @@
-import { StyleSheet } from "react-native";
-import { colors } from "../../colors";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
-    paddingHorizontal: 20,
+    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 16,
     paddingTop: 20,
   },
   header: {
@@ -15,7 +16,7 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   servicesButton: {
-    backgroundColor: colors.azulPrincipal,
+    backgroundColor: "#3182CE",
     flexDirection: "row",
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -23,101 +24,258 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 8,
+    shadowColor: "#3182CE",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   servicesButtonText: {
-    color: "white",
+    color: "#FFFFFF",
     fontSize: 14,
     fontWeight: "600",
-    marginLeft: 6,
   },
   addButton: {
-    backgroundColor: colors.azulPrincipal,
+    backgroundColor: "#3182CE",
     width: 40,
     height: 40,
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: "#3182CE",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   pageTitle: {
     fontSize: 24,
     fontWeight: "bold",
-    color: colors.primary,
+    color: "#1A202C",
     marginBottom: 20,
   },
   content: {
     flex: 1,
   },
-  item: {
-    backgroundColor: colors.white,
-    padding: 16,
-    marginVertical: 8,
-    borderRadius: 10,
-    elevation: 2,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
+  listContent: {
+    paddingBottom: 20,
   },
-  itemHeader: {
+
+  // Card Styles
+  card: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    marginVertical: 8,
+    padding: 16,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+    borderWidth: 1,
+    borderColor: "#F7FAFC",
+  },
+
+  // Card Header
+  cardHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginBottom: 8,
+    marginBottom: 12,
   },
-  title: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: colors.primary,
+  idContainer: {
     flex: 1,
-    marginRight: 10,
+    marginRight: 12,
+  },
+  idText: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#1A202C",
+    marginBottom: 4,
+  },
+  serviceText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#3182CE",
   },
   statusBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
     borderRadius: 12,
+    minWidth: 80,
+    alignItems: "center",
   },
   statusText: {
-    color: colors.white,
+    color: "#FFFFFF",
     fontSize: 10,
-    fontWeight: "bold",
+    fontWeight: "700",
+    letterSpacing: 0.5,
   },
-  description: {
+
+  // Image
+  imageContainer: {
+    width: '100%',
+    height: 160,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 12,
+    backgroundColor: '#F7FAFC',
+  },
+  serviceImage: {
+    width: '100%',
+    height: '100%',
+  },
+
+  // Service Info
+  serviceInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  valueContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F0FFF4',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#9AE6B4',
+  },
+  valueText: {
     fontSize: 14,
-    color: colors.cinza,
+    fontWeight: "700",
+    color: "#38A169",
+    marginLeft: 4,
+  },
+  categoryContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FAF5FF',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#D6BCFA',
+  },
+  categoryText: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#805AD5",
+    marginLeft: 4,
+  },
+  durationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#EBF8FF',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#BEE3F8',
+  },
+  durationText: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#3182CE",
+    marginLeft: 4,
+  },
+
+  // Info Sections
+  infoSection: {
+    marginBottom: 16,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 8,
   },
-  infoContainer: {
-    marginBottom: 8,
-  },
-  clientText: {
+  sectionTitle: {
     fontSize: 14,
-    color: colors.text,
-    marginBottom: 2,
+    fontWeight: "600",
+    color: "#1A202C",
+    marginLeft: 8,
   },
-  driverText: {
-    fontSize: 14,
-    color: colors.text,
-    marginBottom: 2,
+  infoText: {
+    fontSize: 13,
+    color: "#2D3748",
+    marginBottom: 4,
+    lineHeight: 18,
+  },
+  infoLabel: {
+    fontWeight: "600",
+    color: "#000000",
+  },
+
+  // Date and Time
+  dateTimeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   dateContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#EBF8FF',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
+    flex: 1,
+    marginRight: 8,
   },
   dateText: {
     fontSize: 13,
-    color: colors.primary,
+    fontWeight: "600",
+    color: "#3182CE",
     marginLeft: 6,
   },
-  valueContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
+  timeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#3182CE',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
+    flex: 1,
   },
-  valueText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: colors.azulPrincipal,
+  timeText: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#FFFFFF",
+    marginLeft: 6,
   },
+
+  // Notes Section
+  notesSection: {
+    backgroundColor: '#FFFAF0',
+    padding: 12,
+    borderRadius: 12,
+    borderLeftWidth: 4,
+    borderLeftColor: '#D69E2E',
+    marginBottom: 16,
+  },
+  notesText: {
+    fontSize: 13,
+    color: "#2D3748",
+    lineHeight: 18,
+  },
+
+  // Card Footer
+  cardFooter: {
+    borderTopWidth: 1,
+    borderTopColor: '#E2E8F0',
+    paddingTop: 12,
+  },
+  footerText: {
+    fontSize: 11,
+    color: "#A0AEC0",
+    marginBottom: 2,
+  },
+
+  // Empty State
   emptyContainer: {
     flex: 1,
     justifyContent: "center",
@@ -128,34 +286,26 @@ export default StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     fontWeight: "600",
-    color: colors.text,
+    color: "#2D3748",
     marginTop: 20,
     marginBottom: 10,
   },
   emptySubtext: {
     textAlign: "center",
     fontSize: 14,
-    color: colors.cinza,
+    color: "#A0AEC0",
+    marginBottom: 24,
+    lineHeight: 20,
   },
-  serviceContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 8,
-    backgroundColor: "#F5F5F5",
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 8,
-    alignSelf: "flex-start",
+  emptyButton: {
+    backgroundColor: "#3182CE",
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 20,
   },
-  serviceText: {
-    fontSize: 13,
-    color: colors.primary,
-    marginLeft: 6,
-    fontWeight: "500",
-  },
-  phoneText: {
-    fontSize: 13,
-    color: colors.cinza,
-    marginTop: 2,
+  emptyButtonText: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "600",
   },
 });
